@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Inicio";
+}
+@using LittlePets.Entidades
+@model List<TablaPrincipal>
+<script src="~/Scripts/chart/exporting.js"></script>
+<script src="~/Scripts/chart/highcharts.js"></script>
+<script src="~/Scripts/c3.js"></script>
+<script src="~/Scripts/c3.min.js"></script>
+<script src="~/Scripts/d3.js"></script>
+<script src="~/Scripts/d3.min.js"></script>
+<link href="~/Content/c3.css" rel="stylesheet" />
+<link href="~/Content/c3.min.css" rel="stylesheet" />
+
+@*<div class="jumbotron">
+        <h1>ASP.NET</h1>
+        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+        <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    </div>*@
+
+<div class="col-md-6">
+    <img src="@Url.Content("~/Content/Imagenes/Fox.jpg")" />
+</div>
+
+<div class="col-md-6 text-center" style="margin-top:10px;"><h3>Mascotas Registradas</h3></div>
+<div class="col-md-6" style="margin-top:40px;">
+    <div id="chart"></div>
+</div>
+
+
+<script>
+
+    var chart = c3.generate({
+        title: {
+        },
+        data: {
+            columns: [
+                ['Perros: ' + 1, 2],
+                ['Gatos: '+ 3, 4],
+            ],
+            colors: {
+                //Sin funcionalidad debido a que el nombre de las columnas no son iguales
+                Perros: '#FF9800',
+                Gatos: '#795548'
+            },
+            type: 'pie',
+            onclick: function (d, i) { console.log("onclick", d, i); },
+            onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+            onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+        }
+    });
+</script>
+

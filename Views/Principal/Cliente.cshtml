@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "Clientes";
+}
+
+@using LittlePets.Entidades
+@{
+    ViewData["Title"] = ViewBag.Title;
+}
+@model List<Cliente>
+
+<h2>@ViewBag.Title</h2>
+
+@if (Model != null)
+{
+    <div class="col-md-7">
+        <table class="table table-hover">
+            <thead style="color:white; background-color: #101010;">
+                <tr>
+                    <td> Nombre</td>
+                    <td> Teléfono</td>
+                    <td> Correo </td>
+                    <td> </td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Cliente cliente in Model)
+                {
+                <tr>
+                    <td> @cliente.NombreCliente</td>
+                    <td> @cliente.Telefono</td>
+                    <td> @cliente.Correo</td>
+
+
+                    @*<td>
+            <a href="@Url.Action("ObtenerMascotaDetalle", "Principal", new { idcliente = @mascota.IdMascota })">
+                <div class="detalle-Mascota" data-id="@mascota.IdMascota" style="color:green;">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </div>
+        </td>*@
+                    <td>
+                        <a href="@Url.Action("EliminarCliente", "Principal", new { idcliente = @cliente.IdCliente })">
+                            <div class="eliminar-Mascota" style="color:red;">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-5">
+        <h4>Clientes Encontrados con Mascotas: @Model.Count</h4>
+        @using (Html.BeginForm("AgregarCliente", "Principal"))
+        {
+            <div class="col-md-12">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" value="" required>
+            </div>
+            <div class="col-md-12">
+                <label for="direccion">Dirección</label>
+                <input type="text" class="form-control" id="direccion" name="direccion" value="">
+            </div>
+            <div class="col-md-12">
+                <label for="telefono">Teléfono</label>
+                <input type="text" class="form-control" id="telefono" name="telefono" value="" required>
+            </div>
+            <div class="col-md-12">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="">
+            </div>
+
+            <br />
+            <div class="col-md-12 text-right" style="margin-top:25px; margin-bottom:25px;">
+                <button type="submit" class="btn btn-warning">Agregar Cliente </button>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="col-md-8 text-center" style="margin-bottom:100px;">
+        <br />
+        <h4> No hay registros disponibles</h4>
+    </div>
+}
+

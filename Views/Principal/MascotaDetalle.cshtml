@@ -1,0 +1,79 @@
+﻿@{
+    ViewBag.Title = "Detalle";
+    var profileImg = "~/Content/Mascotas/" + Model.IdMascota + ".jpg";
+    var absolutePath = HttpContext.Current.Server.MapPath(profileImg);
+
+}
+@using LittlePets.Entidades
+@model MascotaDetalle
+
+@if (Model != null)
+{
+    <h2>@Model.Nombre</h2>
+    <div class="col-md-4" style="margin-bottom:50px;">
+        @if (System.IO.File.Exists(absolutePath))
+        {
+            <img src="@Url.Content("~/Content/Mascotas/"+Model.IdMascota+".jpg")" />
+        }
+        else
+        {
+            <img src="@Url.Content("~/Content/Mascotas/Not-found.png")" />
+        }
+
+    </div>
+    <div class="container">
+        @using (Html.BeginForm("EditarMascota", "Principal"))
+        {
+
+            <div class="col-md-4" style="display:none;">
+                <label for="idmascota">Codigo</label>
+                <input type="text" class="form-control" id="idmascota" name="idmascota" value="@Model.IdMascota">
+            </div>
+            <div class="col-md-4">
+                <label for="duenio">Dueño</label>
+                <input type="text" class="form-control" id="duenio" name="duenio" value="@Model.Dueño" disabled>
+            </div>
+            <div class="col-md-4">
+                <label for="cuidador">Encargado</label>
+                <input type="text" class="form-control" id="cuidador" name="cuidador" value="@Model.Cuidador" disabled>
+            </div>
+            <div class="col-md-4">
+                <label for="especie">Especie</label>
+                <input type="text" class="form-control" id="especie" name="especie" value="@Model.Especie" disabled>
+            </div>
+            <div class="col-md-4">
+                <label for="raza">Raza</label>
+                <input type="text" class="form-control" id="raza" name="raza" value="@Model.Raza" disabled>
+            </div>
+            <div class="col-md-4">
+                <label for="color">Color</label>
+                <input type="text" class="form-control" id="color" name="color" value="@Model.Color">
+            </div>
+            <div class="col-md-4">
+                <label for="peso">Peso</label>
+                <input type="text" class="form-control" id="peso" name="peso" value="@Model.Peso Kg">
+            </div>
+            <div class="col-md-4">
+                <label for="sexo">Sexo</label>
+                <input type="text" class="form-control" id="sexo" name="sexo" value="@Model.Sexo" disabled>
+            </div>
+            <div class="col-md-4">
+                <label for="nacimiento">Edad</label>
+                <input type="text" class="form-control" id="nacimiento" name="nacimiento" value="@Model.Edad años" disabled>
+            </div>
+            <br />
+            <div class="col-md-8 text-center" style="margin-top:25px;">
+                <button type="submit" class="btn btn-warning">Modificar Datos</button>
+            </div>
+        }
+        <div class="col-md-8 text-center" style="margin-top:25px;">
+            <a type="button" class="btn btn-danger" href="@Url.Action("EliminarMascota","Principal",  new { idmascota = @Model.IdMascota })"> Eliminar Mascota </a>
+        </div>
+    </div>
+
+}
+else
+{
+    @Html.Partial("~/Views/Principal/_Error.cshtml")
+}
+

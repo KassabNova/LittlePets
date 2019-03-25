@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Agregar Mascota";
+}
+
+<h2>Agregar Mascota</h2>
+<div class="container">
+    @using (Html.BeginForm("AgregarMascotaDB", "Principal"))
+    {
+        <div class="col-md-4">
+            <label for="duenio">Dueño</label>
+            <input type="text" class="form-control" id="duenio" name="duenio" value="" required>
+        </div>
+        <div class="col-md-4">
+            <label for="cuidador">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" value="" required>
+        </div>
+        <div class="col-md-4">
+            <label for="cuidador">Encargado</label>
+            <input type="text" class="form-control" id="cuidador" name="cuidador" value="0">
+        </div>
+        <div class="col-md-4">
+            <label for="especie">Especie</label>
+            <input type="text" class="form-control" id="especie" name="especie" value="" required>
+        </div>
+        <div class="col-md-4">
+            <label for="raza">Raza</label>
+            <input type="text" class="form-control" id="raza" name="raza" value="" required>
+        </div>
+        <div class="col-md-4">
+            <label for="color">Color</label>
+            <input type="text" class="form-control" id="color" name="color" value="" requiered>
+        </div>
+        <div class="col-md-4">
+            <label for="peso">Peso</label>
+            <input type="number" class="form-control" id="peso" name="peso" value="" required>
+        </div>
+        <div class="col-md-4">
+            <label for="sexo">Sexo</label>
+            <input type="text" class="form-control" id="sexo" name="sexo" value="" required>
+        </div>
+        <div class="col-md-4">
+            <label for="nacimiento">Año de nacimiento</label>
+            <input type="date" class="form-control" id="nacimiento" name="nacimiento" value="" required>
+        </div>
+        <br />
+        <div class="col-md-12 text-center" style="margin-top:25px; margin-bottom:25px;">
+            <button type="submit" class="btn btn-warning">Agregar Mascota </button>
+        </div>
+    }
+</div>
+
+
+
+
